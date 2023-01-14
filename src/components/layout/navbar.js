@@ -1,9 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
     <nav className="w-full flex justify-between space-x-5  p-3">
-      <p className="font-semibold text-2xl text-blue-400">Secure Send</p>
+      <Link href="/">
+        <p className="font-semibold text-2xl text-blue-400">Secure Send</p>
+      </Link>
       <a
         className="p-1 border rounded flex items-center space-x-2"
         target="_blank"
