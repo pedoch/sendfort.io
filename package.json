@@ -9,12 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.0.0",
     "@next/font": "13.1.1",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",
+    "iconv-lite": "^0.6.3",
     "next": "13.1.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
