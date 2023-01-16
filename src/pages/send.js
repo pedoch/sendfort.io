@@ -301,7 +301,7 @@ export default function Send() {
               <CheckCircleOutlined className="text-5xl text-green-500" />
               <p className="text-2xl mt-5">Content encrypted successfully!</p>
               <p>Copy the link bellow to share it with your teammates</p>
-              <div className="bg-gray-200 w-full text-gray-500 p-3 rounded mt-2 flex justify-between">
+              <div className="bg-gray-200 w-full text-gray-500 p-3 rounded mt-2 flex items-center justify-between">
                 <a
                   className="text-sm"
                   href={`https://secure-send.vercel.app/view/${confirmedSlug}`}
