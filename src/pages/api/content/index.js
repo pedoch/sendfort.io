@@ -39,7 +39,7 @@ export default async function createContentAPI(req, res) {
 
         const hashedPassword = await bcrypt.hash(
           sentPassword,
-          process.env.BCRYPT_SALT
+          parseInt(process.env.BCRYPT_SALT)
         );
 
         passwordToStore = hashedPassword;
@@ -53,7 +53,7 @@ export default async function createContentAPI(req, res) {
 
       const savedContent = await Content.create({
         content,
-        passwordToStore,
+        password: passwordToStore,
         slug,
         expiresAt: Date.now() + checkValidityPeriod * 60 * 60 * 1000,
       });
