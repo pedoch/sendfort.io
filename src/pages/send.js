@@ -264,7 +264,7 @@ export default function Send() {
                   className="text-sm"
                   href={`${process.env.NEXT_PUBLIC_HOST_URL}/view/${confirmedSlug}`}
                 >
-                  https://secure-send.vercel.app/view/{confirmedSlug}
+                  {process.env.NEXT_PUBLIC_HOST_URL}/view/{confirmedSlug}
                 </a>
                 <button
                   className="p-1 text-sm"
