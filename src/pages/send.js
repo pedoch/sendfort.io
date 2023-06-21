@@ -100,7 +100,7 @@ export default function Send() {
 
   const onCopy = () => {
     navigator.clipboard.writeText(
-      `https://secure-send.vercel.app/view/${confirmedSlug}`,
+      `${process.env.NEXT_PUBLIC_HOST_URL}/view/${confirmedSlug}`,
     );
 
     setCopyTimeout(
