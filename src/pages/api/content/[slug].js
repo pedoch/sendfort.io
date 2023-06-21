@@ -45,7 +45,6 @@ export default async function contentAPI(req, res) {
         .status(200)
         .json({ content: decryptedContent, expiresAt: savedContent.expiresAt });
     } catch (error) {
-      console.log(error);
       return res.status(500).json({ error });
     }
   }

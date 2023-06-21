@@ -96,8 +96,6 @@ export async function getServerSideProps(context) {
       `${process.env.HOST_URL}/api/content/${slug}`,
     );
 
-    console.log(data);
-
     entry = data;
   } catch (error) {
     console.log(error);

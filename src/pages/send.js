@@ -137,7 +137,6 @@ export default function Send() {
       setShowSuccess(true);
       setConfirmedSlug(`${data.slug}${password}`);
     } catch (error) {
-      console.log(error);
       setFormError(error.message);
     } finally {
       setSubmitting(false);
