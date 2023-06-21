@@ -48,7 +48,6 @@ export default async function createContentAPI(req, res) {
 
       return res.status(200).json({ slug: savedContent.slug });
     } catch (error) {
-      console.log(error);
       return res.status(500).json({ error });
     }
   }
