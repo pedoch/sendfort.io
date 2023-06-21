@@ -262,7 +262,7 @@ export default function Send() {
               <div className="bg-gray-100 w-full text-gray-500 p-3 rounded mt-2 flex items-center justify-between">
                 <a
                   className="text-sm"
-                  href={`https://secure-send.vercel.app/view/${confirmedSlug}`}
+                  href={`${process.env.NEXT_PUBLIC_HOST_URL}/view/${confirmedSlug}`}
                 >
                   https://secure-send.vercel.app/view/{confirmedSlug}
                 </a>
