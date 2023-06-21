@@ -2,9 +2,9 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="w-full p-3 flex justify-between">
+    <footer className="w-full p-3 flex justify-between flex-wrap gap-5 border-t">
       <p className="flex items-center">
-        <strong>Created</strong>&nbsp;by&nbsp;
+        <strong>Created by</strong>&nbsp;
         <a
           href="https://twitter.com/deltanboi"
           target="_blank"
@@ -27,7 +27,7 @@ const Footer = () => {
         target="_blank"
         rel="noreferrer noopener"
       >
-        Contribute:{" "}
+        <strong>Contribute:</strong>&nbsp;
         <Image
           src="/github.svg"
           className="ml-2"

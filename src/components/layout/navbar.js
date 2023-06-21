@@ -5,10 +5,10 @@ const Navbar = () => {
   return (
     <nav className="w-full flex justify-between space-x-5  p-3">
       <Link href="/">
-        <p className="font-semibold text-2xl text-blue-400">Secure Send</p>
+        <p className="font-semibold text-2xl text-blue-400">SecureSend</p>
       </Link>
       <a
-        className="p-1 border rounded flex items-center space-x-2"
+        className="py-1 px-2 border rounded flex items-center space-x-2"
         target="_blank"
         href="https://www.buymeacoffee.com/deltanboi"
         rel="noreferrer"
@@ -19,7 +19,7 @@ const Navbar = () => {
           width={17.5}
           height={25}
         />
-        <p>Buy me a coffee</p>
+        <p className=" phone:hidden">Buy me a coffee</p>
       </a>
     </nav>
   );

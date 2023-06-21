@@ -5,9 +5,6 @@ const contentSchema = new Schema({
     type: String,
     required: true,
   },
-  password: {
-    type: String,
-  },
   slug: {
     type: String,
     required: true,

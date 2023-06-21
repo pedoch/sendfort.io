@@ -1,9 +1,8 @@
-import connectDB from "@/utils/connectDB";
-import Cors from "cors";
-import runMiddleware from "@/utils/middleware";
 import { Content } from "@/models";
-import CryptoJS from "crypto-js";
-import bcrypt from "bcrypt";
+import connectDB from "@/utils/connectDB";
+import { decryptString } from "@/utils/encryptObject";
+import runMiddleware from "@/utils/middleware";
+import Cors from "cors";
 
 const cors = Cors({
   origin: "*",
@@ -27,7 +26,10 @@ export default async function contentAPI(req, res) {
     try {
       await connectDB();
 
-      const savedContent = await Content.findOne({ slug });
+      const slugToCheck = slug.slice(0, 10);
+      const password = slug.slice(10);
+
+      const savedContent = await Content.findOne({ slug: slugToCheck });
 
       if (!savedContent) {
         return res.status(404).json({
@@ -37,22 +39,11 @@ export default async function contentAPI(req, res) {
         });
       }
 
-      const sentPassword = CryptoJS.AES.decrypt(
-        req.headers.authorization,
-        process.env.PASSWORD_SECRET
-      ).toString(CryptoJS.enc.Utf8);
+      const decryptedContent = decryptString(savedContent.content, password);
 
-      const match = await bcrypt.compare(sentPassword, savedContent.password);
-
-      if (!match) {
-        return res.status(401).json({
-          error: {
-            message: "Unauthorized",
-          },
-        });
-      }
-
-      return res.status(200).json({ content: savedContent.content });
+      return res
+        .status(200)
+        .json({ content: decryptedContent, expiresAt: savedContent.expiresAt });
     } catch (error) {
       console.log(error);
       return res.status(500).json({ error });

@@ -1,9 +1,9 @@
-import connectDB from "@/utils/connectDB";
-import Cors from "cors";
-import runMiddleware from "@/utils/middleware";
 import { Content } from "@/models";
-import CryptoJS from "crypto-js";
-import bcrypt from "bcrypt";
+import connectDB from "@/utils/connectDB";
+import { encryptString } from "@/utils/encryptObject";
+import generatePermalink from "@/utils/generatePermalink";
+import runMiddleware from "@/utils/middleware";
+import Cors from "cors";
 
 const cors = Cors({
   origin: "*",
@@ -16,34 +16,23 @@ export default async function createContentAPI(req, res) {
   if (req.method === "POST") {
     await connectDB();
 
-    const { content, validityPeriod, slug, password = undefined } = req.body;
+    const { content, validityPeriod, password } = req.body;
+
+    let slugIsUnique = false;
+    let slug;
 
     try {
-      const contentWithExistingSlug = await Content.findOne({ slug });
+      while (!slugIsUnique) {
+        slug = generatePermalink();
 
-      if (contentWithExistingSlug) {
-        return res.status(400).json({
-          error: {
-            message: "Slug already exists",
-          },
-        });
+        const contentWithExistingSlug = await Content.findOne({ slug });
+
+        if (!contentWithExistingSlug) {
+          slugIsUnique = true;
+        }
       }
 
-      let passwordToStore = undefined;
-
-      if (password) {
-        const sentPassword = CryptoJS.AES.decrypt(
-          password,
-          process.env.PASSWORD_SECRET
-        ).toString(CryptoJS.enc.Utf8);
-
-        const hashedPassword = await bcrypt.hash(
-          sentPassword,
-          parseInt(process.env.BCRYPT_SALT)
-        );
-
-        passwordToStore = hashedPassword;
-      }
+      let encryptedContent = encryptString(content, password);
 
       let checkValidityPeriod = validityPeriod;
 
@@ -52,13 +41,12 @@ export default async function createContentAPI(req, res) {
       }
 
       const savedContent = await Content.create({
-        content,
-        password: passwordToStore,
+        content: encryptedContent,
         slug,
         expiresAt: Date.now() + checkValidityPeriod * 60 * 60 * 1000,
       });
 
-      return res.status(200).json({ content: savedContent.content });
+      return res.status(200).json({ slug: savedContent.slug });
     } catch (error) {
       console.log(error);
       return res.status(500).json({ error });
