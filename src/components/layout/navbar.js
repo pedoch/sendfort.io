@@ -5,21 +5,23 @@ const Navbar = () => {
   return (
     <nav className="w-full flex justify-between space-x-5  p-3">
       <Link href="/">
-        <p className="font-semibold text-2xl text-blue-400">SecureSend</p>
+        <p className="font-semibold text-2xl text-primary">SecureSend</p>
       </Link>
       <a
-        className="py-1 px-2 border rounded flex items-center space-x-2"
+        className="flex items-center"
+        href="https://github.com/pedoch/secure-send"
         target="_blank"
-        href="https://www.buymeacoffee.com/deltanboi"
-        rel="noreferrer"
+        rel="noreferrer noopener"
+        aria-label="Contribute on Github"
       >
+        <strong className="phone:hidden">Contribute:</strong>&nbsp;
         <Image
-          src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg"
-          alt="Buy me a coffee"
-          width={17.5}
+          src="/github.svg"
+          className="ml-2"
+          alt="Github icon"
+          width={25}
           height={25}
         />
-        <p className=" phone:hidden">Buy me a coffee</p>
       </a>
     </nav>
   );

@@ -16,14 +16,16 @@ export default async function createContentAPI(req, res) {
   if (req.method === "POST") {
     await connectDB();
 
-    const { content, validityPeriod, password } = req.body;
+    const { content, validityPeriod, key } = req.body;
 
     let slugIsUnique = false;
     let slug;
 
     try {
       while (!slugIsUnique) {
-        slug = generatePermalink();
+        const uniquePermalink = generatePermalink();
+
+        slug = `${uniquePermalink}${Date.now()}`;
 
         const contentWithExistingSlug = await Content.findOne({ slug });
 
@@ -32,7 +34,19 @@ export default async function createContentAPI(req, res) {
         }
       }
 
-      let encryptedContent = encryptString(content, password);
+      if (!content) {
+        return res.status(400).json({
+          message: "Content is required",
+        });
+      }
+
+      if (!key) {
+        return res.status(400).json({
+          message: "Passkey is required",
+        });
+      }
+
+      let encryptedContent = encryptString(content, key);
 
       let checkValidityPeriod = validityPeriod;
 
@@ -48,7 +62,8 @@ export default async function createContentAPI(req, res) {
 
       return res.status(200).json({ slug: savedContent.slug });
     } catch (error) {
-      return res.status(500).json({ error });
+      console.error(error);
+      return res.status(500).json({ message: error.message });
     }
   }
 
