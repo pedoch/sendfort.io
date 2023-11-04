@@ -22,6 +22,9 @@ module.exports = {
         smallPhone: { max: "375px" },
         // => @media (max-width: 350px) { ... }
       },
+      colors: {
+        primary: "#0B9B36",
+      },
     },
   },
   plugins: [],

@@ -10,6 +10,13 @@
   margin: 0;
 }
 
+:root {
+  @apply bg-black/95 text-white;
+
+  --st-shadow: 0px 0px 4px 0px rgba(11, 155, 54, 0.2);
+  --st-box-shadow: var(--st-shadow), var(--st-shadow), var(--st-shadow);
+}
+
 html,
 body {
   font-family: "Roboto", sans-serif;
@@ -23,13 +30,28 @@ a {
 }
 
 button {
-  @apply bg-transparent border border-gray-400 outline-none rounded px-2 py-1;
+  @apply bg-transparent outline-none rounded px-2 py-1.5;
 }
 
 input,
 select,
 textarea {
   @apply bg-transparent border border-gray-400 outline-none rounded p-2;
+}
+
+button:hover,
+input:hover,
+select:hover,
+textarea:hover {
+  @apply border border-primary;
+}
+
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  @apply border border-primary;
+  box-shadow: var(--st-box-shadow);
 }
 
 .mono {

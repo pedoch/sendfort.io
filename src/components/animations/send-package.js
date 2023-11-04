@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { FileProtectOutlined, LaptopOutlined } from "@ant-design/icons";
+import styled from "styled-components";
 
 const Container = styled.div`
   .package {
@@ -76,7 +76,7 @@ const Container = styled.div`
 const SendPackage = () => {
   return (
     <Container className="w-full h-52 relative my-10">
-      <span className="package text-4xl absolute text-blue-500">
+      <span className="package text-4xl absolute text-primary">
         <FileProtectOutlined />
       </span>
       <div className="flex justify-between items-end w-full bottom-0 absolute">
