@@ -18,7 +18,6 @@ const Footer = () => {
             width={25}
             height={25}
           />
-          @ochukodotspace
         </a>
       </p>
       <a

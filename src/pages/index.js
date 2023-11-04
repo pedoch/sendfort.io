@@ -41,10 +41,10 @@ export default function Home() {
           </p>
           <div className="flex flex-col items-center justify-center h-full max-w-3xl mx-auto">
             <SendPackage />
-            <h1 className="text-6xl font-bold mt-20 text-primary">
+            <h1 className="text-6xl font-bold mt-20 text-primary smallTablet:text-4xl phone:text-2xl">
               SecureSend!
             </h1>
-            <p className="text-2xl text-center mt-10">
+            <p className="text-2xl text-center mt-10 smallTablet:text-xl phone:text-base">
               SecureSend is a free service that allows you to send{" "}
               <span className="italic font-semibold text-primary">
                 sensitive
@@ -52,7 +52,7 @@ export default function Home() {
               &nbsp; data to your teammates securely.
             </p>
             <Link href="/send">
-              <button className="my-20 text-xl rounded px-3 py-2 bg-primary text-white">
+              <button className="my-20 text-xl rounded px-3 py-2 bg-primary text-white phone:text-base">
                 Get started
               </button>
             </Link>

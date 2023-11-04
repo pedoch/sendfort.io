@@ -5,7 +5,9 @@ const Navbar = () => {
   return (
     <nav className="w-full flex justify-between space-x-5  p-3">
       <Link href="/">
-        <p className="font-semibold text-2xl text-primary">SecureSend</p>
+        <p className="font-semibold text-2xl text-primary phone:text-xl">
+          SecureSend
+        </p>
       </Link>
       <a
         className="flex items-center"
@@ -14,7 +16,6 @@ const Navbar = () => {
         rel="noreferrer noopener"
         aria-label="Contribute on Github"
       >
-        <strong className="phone:hidden">Contribute:</strong>&nbsp;
         <Image
           src="/github.svg"
           className="ml-2"
