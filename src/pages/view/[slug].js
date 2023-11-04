@@ -44,7 +44,7 @@ function View(props) {
 
       setTimeout(() => {
         router.reload();
-      }, timeLeftInMilliseconds);
+      }, timeLeftInMilliseconds + 30000);
     }
   }, []);
 
