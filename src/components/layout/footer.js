@@ -26,7 +26,7 @@ const Footer = () => {
         rel="noreferrer noopener"
         className="text-primary"
       >
-        Disclaimer Policy
+        Disclaimer
       </a>
       <a
         className="rounded flex items-center bg-primary text-white px-2 py-1.5 space-x-1"
