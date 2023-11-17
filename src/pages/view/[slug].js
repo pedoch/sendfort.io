@@ -64,7 +64,7 @@ function View(props) {
   return (
     <>
       <Head>
-        <title>SecureSend - View Package</title>
+        <title>SendFort - View Package</title>
         <meta
           name="description"
           content="Send sensitive data securely"
@@ -117,7 +117,7 @@ function View(props) {
                   </h1>
                   <p className="mono text-xl mb-5">
                     The passkey may not be correct or may not have been
-                    provided, please crosscheck.
+                    provided, please cross-check.
                   </p>
                   <button
                     className="border-white border text-white text-sm hover:text-primary"

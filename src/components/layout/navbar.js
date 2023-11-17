@@ -6,12 +6,13 @@ const Navbar = () => {
     <nav className="w-full flex justify-between space-x-5  p-3">
       <Link href="/">
         <p className="font-semibold text-2xl text-primary phone:text-xl">
-          SecureSend
+          <span className="text-primary">S</span>
+          <span className="text-secondary">F</span>
         </p>
       </Link>
       <a
         className="flex items-center"
-        href="https://github.com/pedoch/secure-send"
+        href="https://github.com/pedoch/sendfort.io"
         target="_blank"
         rel="noreferrer noopener"
         aria-label="Contribute on Github"
