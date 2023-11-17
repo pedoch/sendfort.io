@@ -21,10 +21,10 @@ const Footer = () => {
         </a>
       </p>
       <a
-        href="https://assets.ochuko.space/static/DISCLAIMER_POLICY_04_11_2023_SecureSend-8MYhW3.pdf"
+        href="https://assets.ochuko.space/static/DISCLAIMER_POLICY_16_11_2023_SendFort-0tvFIG.pdf"
         target="_blank"
         rel="noreferrer noopener"
-        className="text-primary"
+        className="hover:underline"
       >
         Disclaimer
       </a>
@@ -32,7 +32,7 @@ const Footer = () => {
         className="rounded flex items-center bg-primary text-white px-2 py-1.5 space-x-1"
         target="_blank"
         rel="noreferrer noopener"
-        href="https://www.buymeacoffee.com/deltanboi"
+        href="https://www.buymeacoffee.com/ochukodotspace"
         aria-label="Buy me a coffee"
       >
         <Image

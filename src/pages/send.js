@@ -177,7 +177,7 @@ export default function Send() {
   return (
     <>
       <Head>
-        <title>SecureSend - Send Package</title>
+        <title>SendFort - Send Package</title>
         <meta
           name="description"
           content="Send sensitive data securely"
