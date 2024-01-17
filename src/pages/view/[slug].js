@@ -1,3 +1,5 @@
+import { Button } from "@/components/button";
+import { Copy } from "@/components/icons/copy";
 import { MainLayout } from "@/components/layout";
 import { ErrorMessage } from "@/components/util";
 import convertUTCDateToLocalDate from "@/utils/convertDate";
@@ -65,18 +67,6 @@ function View(props) {
     <>
       <Head>
         <title>SendFort - View Package</title>
-        <meta
-          name="description"
-          content="Send sensitive data securely"
-        />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1"
-        />
-        <link
-          rel="icon"
-          href="/favicon.ico"
-        />
       </Head>
       <MainLayout>
         <div className="w-full max-w-4xl mx-auto mt-10">
@@ -98,12 +88,15 @@ function View(props) {
                   <p>
                     <strong>Content:</strong>
                   </p>
-                  <button
+                  <Button
                     className="text-xs"
+                    btnClassName="cst-fort-3 border-none py-1 px-2 text-xs flex items-center gap-1"
+                    disableBottom
                     onClick={onCopy}
                   >
-                    {copyTimeout ? "Copied!" : "Copy to clipboard"}
-                  </button>
+                    {copyTimeout ? "Copied!" : "Copy"}
+                    <Copy />
+                  </Button>
                 </div>
               )}
               {entry.content ? (
@@ -140,15 +133,13 @@ function View(props) {
           )}
           <div className="flex justify-end mt-10">
             <Link href="/send">
-              <button className="bg-primary text-white">
-                Send New Package
-              </button>
+              <Button>Send New Package</Button>
             </Link>
           </div>
         </div>
         {showKeyModal && (
-          <div className="fixed w-full h-screen top-0 left-0 flex items-center justify-center p-2">
-            <div className="bg-[#080808] p-10 rounded shadow max-w-full smallTablet:p-5">
+          <div className="fixed w-full h-screen z-10 top-0 left-0 flex items-center justify-center p-2">
+            <div className="bg-[#0B3A43] bg-blur p-10 rounded shadow max-w-full smallTablet:p-5">
               <form
                 onSubmit={onSubmit}
                 autocomplete="off"
@@ -162,7 +153,7 @@ function View(props) {
                 </label>
                 <input
                   name="contentKey"
-                  className="w-full"
+                  className="w-full mt-2"
                   type={showKey ? "text" : "password"}
                   placeholder="Enter Passkey"
                   value={key}
@@ -191,12 +182,12 @@ function View(props) {
                   </label>
                 </div>
                 <div className="flex justify-end mt-5">
-                  <button
-                    className="bg-primary border border-primary text-white w-full"
+                  <Button
+                    className="w-full"
                     type="submit"
                   >
                     Submit
-                  </button>
+                  </Button>
                 </div>
                 <button
                   className="absolute text-lg -top-10 -right-10 border-0 hover:border-0 hover:text-primary smallTablet:-top-5 smallTablet:-right-5"

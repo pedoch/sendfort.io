@@ -12,6 +12,8 @@ const cors = Cors({
 export default async function contentAPI(req, res) {
   await runMiddleware(req, res, cors);
 
+  await connectDB();
+
   if (req.method === "GET") {
     const { slug, key } = req.query;
 
@@ -28,8 +30,6 @@ export default async function contentAPI(req, res) {
     }
 
     try {
-      await connectDB();
-
       const savedContent = await Content.findOne({ slug });
 
       if (!savedContent) {

@@ -23,8 +23,8 @@ module.exports = {
         // => @media (max-width: 350px) { ... }
       },
       colors: {
-        primary: "#0B9B36",
-        secondary: "#FC4F43",
+        primary: "#20BFD6",
+        secondary: "#AE31E8",
       },
     },
   },

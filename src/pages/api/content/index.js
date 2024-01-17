@@ -13,9 +13,9 @@ const cors = Cors({
 export default async function createContentAPI(req, res) {
   await runMiddleware(req, res, cors);
 
-  if (req.method === "POST") {
-    await connectDB();
+  await connectDB();
 
+  if (req.method === "POST") {
     const { content, validityPeriod, key } = req.body;
 
     let slugIsUnique = false;

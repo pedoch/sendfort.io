@@ -1,29 +1,24 @@
-import Image from "next/image";
 import Link from "next/link";
+import { Coffee } from "../icons/coffee";
 
 const Navbar = () => {
   return (
-    <nav className="w-full flex justify-between space-x-5  p-3">
+    <nav className="w-full flex justify-between space-x-5 py-6 px-20 z-10 tablet:px-10 tablet:py-4 smallTablet:px-4">
       <Link href="/">
-        <p className="font-semibold text-2xl text-primary phone:text-xl">
-          <span className="text-primary">S</span>
-          <span className="text-secondary">F</span>
+        <p className="font-semibold text-3xl phone:text-xl cst-close cst-font-900 ">
+          <span className="text-white">Send</span>
+          <span className="cst-fort">Fort</span>
         </p>
       </Link>
       <a
-        className="flex items-center"
-        href="https://github.com/pedoch/sendfort.io"
+        className="flex items-center text-xs text-white space-x-1"
         target="_blank"
         rel="noreferrer noopener"
-        aria-label="Contribute on Github"
+        href="https://www.buymeacoffee.com/ochukodotspace"
+        aria-label="Buy me a coffee"
       >
-        <Image
-          src="/github.svg"
-          className="ml-2"
-          alt="Github icon"
-          width={25}
-          height={25}
-        />
+        <p className="smallTablet:hidden">Buy me a coffee</p>
+        <Coffee className="smallTablet:!w-5 smallTablet:h-auto" />
       </a>
     </nav>
   );

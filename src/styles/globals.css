@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&family=Space+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -17,12 +18,29 @@
   --st-box-shadow: var(--st-shadow), var(--st-shadow), var(--st-shadow);
 }
 
+.cst-close {
+  letter-spacing: -30% !important;
+}
+
+.cst-font-900 {
+  font-weight: 900;
+}
+
+.cst-font-500 {
+  font-weight: 500;
+}
+
 html,
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
   font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "slnt" 0;
   line-height: 1.5;
   overflow-x: hidden;
+  background-color: #0a0e1a;
 }
 
 a {
@@ -31,13 +49,13 @@ a {
 }
 
 button {
-  @apply bg-transparent outline-none border border-primary rounded px-2 py-1.5;
+  @apply bg-transparent outline-none border border-primary rounded-md px-2 py-1.5;
 }
 
 input,
 select,
 textarea {
-  @apply bg-transparent border border-gray-400 outline-none rounded p-2;
+  @apply bg-transparent border border-gray-400 outline-none rounded-md p-2;
 }
 
 button:hover,
@@ -57,6 +75,22 @@ textarea:focus {
 
 .mono {
   font-family: "Space Mono", monospace;
+}
+
+.cst-fort {
+  background: linear-gradient(180deg, #0bd4d4 0%, #ae31e8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cst-fort-2 {
+  background: linear-gradient(180deg, #ae31e8 0%, #0bd4d4 78.65%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cst-fort-3 {
+  background: linear-gradient(144.57deg, #0bd4d4 -12.89%, #ae31e8 79.21%);
 }
 
 /* @media (prefers-color-scheme: dark) {

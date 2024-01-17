@@ -1,48 +1,53 @@
-import Image from "next/image";
+import { GitHub } from "../icons/github";
 
 const Footer = () => {
   return (
-    <footer className="w-full p-3 flex justify-between items-center flex-wrap gap-5 border-t border-white/20">
-      <p className="flex items-center">
-        <strong className="mr-2 phone:hidden">Created by&nbsp;</strong>
+    <footer className="w-full flex justify-between items-center text-xs z-10 flex-wrap gap-5 py-6 px-20 tablet:px-10 tablet:py-4 smallTablet:px-4">
+      <div className="flex gap-5 items-center">
         <a
-          href="https://twitter.com/ochukodotspace"
+          className="flex items-center gap-x-1"
+          href="https://github.com/pedoch/sendfort.io"
           target="_blank"
           rel="noreferrer noopener"
-          className="flex items-center"
+          aria-label="Contribute on Github"
         >
-          <Image
-            src="/twitter.svg"
-            className="mr-1"
-            alt="twitter icon"
-            width={25}
-            height={25}
-          />
+          <span className="tablet:hidden">Repo</span>
+          <GitHub />
         </a>
-      </p>
-      <a
-        href="https://assets.ochuko.space/static/DISCLAIMER_POLICY_16_11_2023_SendFort-0tvFIG.pdf"
-        target="_blank"
-        rel="noreferrer noopener"
-        className="hover:underline"
-      >
-        Disclaimer
-      </a>
-      <a
-        className="rounded flex items-center bg-primary text-white px-2 py-1.5 space-x-1"
-        target="_blank"
-        rel="noreferrer noopener"
-        href="https://www.buymeacoffee.com/ochukodotspace"
-        aria-label="Buy me a coffee"
-      >
-        <Image
-          src="/buy-me-a-coffee.png"
-          alt="Buy me a coffee logo"
-          width={17.5}
-          height={25}
-        />
-        <p className="phone:hidden">Buy me a coffee</p>
-      </a>
+        <a
+          href="https://assets.ochuko.space/static/DISCLAIMER_POLICY_16_11_2023_SendFort-0tvFIG.pdf"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="hover:underline"
+        >
+          Disclaimer
+        </a>
+      </div>
+      <div className="flex gap-2 flex-wrap">
+        <p className="flex items-center">
+          Created by&nbsp;
+          <a
+            href="https://dev.ochuko.space"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="cst-close font-bold"
+          >
+            Ochuko
+          </a>
+          ,
+        </p>
+        <p className="flex items-center">
+          Design by&nbsp;
+          <a
+            href="https://cutt.ly/Samuels-Portfolio"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="cst-close font-bold"
+          >
+            Samuel
+          </a>
+        </p>
+      </div>
     </footer>
   );
 };
