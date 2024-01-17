@@ -5,6 +5,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
+        <title>SendFort</title>
         <meta
           name="description"
           content="Send sensitive data securely"
@@ -15,7 +16,7 @@ export default function App({ Component, pageProps }) {
         />
         <link
           rel="icon"
-          href="/favicon.ico"
+          href="https://assets.ochuko.space/static/SendFort_Box_Logo-YTyZFx.png"
         />
       </Head>
       <Component {...pageProps} />
