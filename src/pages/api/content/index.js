@@ -2,17 +2,8 @@ import { Content } from "@/models";
 import connectDB from "@/utils/connectDB";
 import { encryptString } from "@/utils/encryptObject";
 import generatePermalink from "@/utils/generatePermalink";
-import runMiddleware from "@/utils/middleware";
-import Cors from "cors";
-
-const cors = Cors({
-  origin: "*",
-  methods: ["POST"],
-});
 
 export default async function createContentAPI(req, res) {
-  await runMiddleware(req, res, cors);
-
   await connectDB();
 
   if (req.method === "POST") {
@@ -50,8 +41,8 @@ export default async function createContentAPI(req, res) {
 
       let checkValidityPeriod = validityPeriod;
 
-      if (checkValidityPeriod > 24) {
-        checkValidityPeriod = 24;
+      if (checkValidityPeriod > 89) {
+        checkValidityPeriod = 89;
       }
 
       const savedContent = await Content.create({
