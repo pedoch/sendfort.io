@@ -5,10 +5,6 @@ import { decryptString } from "@/utils/encryptObject";
 export default async function contentAPI(req, res) {
   await connectDB();
 
-  await connectDB();
-
-  await connectDB();
-
   if (req.method === "GET") {
     const { slug, key } = req.query;
 
