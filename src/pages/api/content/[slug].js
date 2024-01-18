@@ -1,16 +1,9 @@
 import { Content } from "@/models";
 import connectDB from "@/utils/connectDB";
 import { decryptString } from "@/utils/encryptObject";
-import runMiddleware from "@/utils/middleware";
-import Cors from "cors";
-
-const cors = Cors({
-  origin: "*",
-  methods: ["GET"],
-});
 
 export default async function contentAPI(req, res) {
-  await runMiddleware(req, res, cors);
+  await connectDB();
 
   await connectDB();
 
