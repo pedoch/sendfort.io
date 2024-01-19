@@ -4,7 +4,6 @@ import { GitHub } from "../icons/github";
 const Footer = () => {
   const router = useRouter();
 
-  console.log(router.pathname);
   return (
     <footer className="w-full flex justify-between items-center text-xs z-10 flex-wrap gap-5 py-6 px-20 tablet:px-10 tablet:py-4 smallTablet:px-4">
       <div className="flex gap-5 items-center">

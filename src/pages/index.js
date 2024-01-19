@@ -9,7 +9,7 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center min-h-full mx-auto mt-[18vh] relative">
         <h1 className="text-6xl text-white text-center cst-font-900 mt-20 relative smallTablet:text-4xl phone:text-2xl z-10">
           <span
-            className="absolute top-1.5 left-0 smallTablet:top-1"
+            className="absolute top-1.5 left-0 smallTablet:top-1 phone:top-0.5"
             aria-hidden
           >
             <span className="cst-fort-2">Send</span>{" "}
