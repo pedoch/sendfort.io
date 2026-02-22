@@ -1,4 +1,4 @@
-export default function convertUTCDateToLocalDate(date) {
+export default function convertUTCDateToLocalDate(date: Date): Date {
   var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
 
   var offset = date.getTimezoneOffset() / 60;

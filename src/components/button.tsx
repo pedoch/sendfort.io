@@ -1,10 +1,19 @@
+import { ButtonHTMLAttributes, ReactNode } from "react";
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+  className?: string;
+  btnClassName?: string;
+  disableBottom?: boolean;
+}
+
 export const Button = ({
   children,
   className,
   btnClassName,
   disableBottom,
   ...rest
-}) => {
+}: ButtonProps) => {
   return (
     <div className={`relative ${className}`}>
       <div

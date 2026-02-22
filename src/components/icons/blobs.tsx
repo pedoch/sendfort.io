@@ -1,4 +1,6 @@
-export const Eclipse1 = (props) => {
+import { SVGProps } from "react";
+
+export const Eclipse1 = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width="633"
@@ -58,7 +60,7 @@ export const Eclipse1 = (props) => {
   );
 };
 
-export const Eclipse2 = (props) => {
+export const Eclipse2 = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width="1202"

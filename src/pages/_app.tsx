@@ -1,6 +1,7 @@
 import { Analytics } from "@vercel/analytics/react";
 import { NextSeo } from "next-seo";
 import Head from "next/head";
+import type { AppProps } from "next/app";
 import "../styles/globals.css";
 
 const NextSeoConfig = {
@@ -23,7 +24,7 @@ const NextSeoConfig = {
   },
 };
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <NextSeo {...NextSeoConfig} />

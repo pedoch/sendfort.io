@@ -1,10 +1,9 @@
+import type { NextApiRequest, NextApiResponse } from "next";
 import { Content } from "@/models";
 import connectDB from "@/utils/connectDB";
 import { decryptString } from "@/utils/encryptObject";
 
-export default async function contentAPI(req, res) {
-  await connectDB();
-
+export default async function contentAPI(req: NextApiRequest, res: NextApiResponse) {
   await connectDB();
 
   if (req.method === "GET") {
@@ -31,14 +30,14 @@ export default async function contentAPI(req, res) {
         });
       }
 
-      const decryptedContent = decryptString(savedContent.content, key);
+      const decryptedContent = decryptString(savedContent.content, key as string);
 
       return res
         .status(200)
         .json({ content: decryptedContent, expiresAt: savedContent.expiresAt });
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: error.message });
+      return res.status(500).json({ message: (error as Error).message });
     }
   }
 

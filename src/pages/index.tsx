@@ -1,7 +1,16 @@
 import { Button } from "@/components/button";
 import { MainLayout } from "@/components/layout";
-import { Controls, Player } from "@lottiefiles/react-lottie-player";
+import dynamic from "next/dynamic";
 import Link from "next/link";
+
+const Player = dynamic(
+  () => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+  { ssr: false }
+);
+const Controls = dynamic(
+  () => import("@lottiefiles/react-lottie-player").then((mod) => mod.Controls),
+  { ssr: false }
+);
 
 export default function Home() {
   return (
@@ -47,7 +56,6 @@ export default function Home() {
           >
             <Controls
               visible={false}
-              // buttons={["play", "repeat", "frame", "debug"]}
             />
           </Player>
         </div>

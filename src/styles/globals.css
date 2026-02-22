@@ -18,10 +18,6 @@
   --st-box-shadow: var(--st-shadow), var(--st-shadow), var(--st-shadow);
 }
 
-.cst-close {
-  letter-spacing: -30% !important;
-}
-
 .cst-font-900 {
   font-weight: 900;
 }

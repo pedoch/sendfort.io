@@ -5,24 +5,34 @@ import { ErrorMessage } from "@/components/util";
 import convertUTCDateToLocalDate from "@/utils/convertDate";
 import axios from "axios";
 import { format } from "date-fns";
+import type { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
-function View(props) {
+interface ContentEntry {
+  content: string;
+  expiresAt: string;
+}
+
+interface ViewProps {
+  entry: ContentEntry | null;
+}
+
+function View(props: ViewProps) {
   const { entry } = props;
 
   const router = useRouter();
 
   const [key, setKey] = useState("");
-  const [keyError, setKeyError] = useState(null);
+  const [keyError, setKeyError] = useState<string | null>(null);
   const [showKeyModal, setShowKeyModal] = useState(false);
 
-  const [copyTimeout, setCopyTimeout] = useState();
+  const [copyTimeout, setCopyTimeout] = useState<ReturnType<typeof setTimeout> | null>();
 
   const onCopy = () => {
-    navigator.clipboard.writeText(entry.content);
+    navigator.clipboard.writeText(entry!.content);
 
     setCopyTimeout(
       setTimeout(() => {
@@ -42,7 +52,7 @@ function View(props) {
       const currentDate = new Date();
       const expirationDate = new Date(entry.expiresAt);
 
-      const timeLeftInMilliseconds = expirationDate - currentDate;
+      const timeLeftInMilliseconds = expirationDate.getTime() - currentDate.getTime();
 
       setTimeout(() => {
         router.reload();
@@ -52,7 +62,7 @@ function View(props) {
 
   const [showKey, setShowKey] = useState(false);
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!key) {
@@ -142,7 +152,7 @@ function View(props) {
             <div className="bg-[#0B3A43] bg-blur p-10 rounded shadow max-w-full smallTablet:p-5">
               <form
                 onSubmit={onSubmit}
-                autocomplete="off"
+                autoComplete="off"
                 className="relative"
               >
                 <label
@@ -172,7 +182,7 @@ function View(props) {
                     onChange={() => {
                       setShowKey(!showKey);
                     }}
-                    autocomplete="off"
+                    autoComplete="off"
                   />
                   <label
                     htmlFor="showKey"
@@ -206,35 +216,31 @@ function View(props) {
   );
 }
 
-const fetchContent = async (slug, key) => {
-  try {
-    const { data } = await axios.get(
-      `${process.env.HOST_URL}/api/content/${slug}?key=${key}`
-    );
+const fetchContent = async (slug: string, key: string): Promise<ContentEntry> => {
+  const { data } = await axios.get(
+    `${process.env.HOST_URL}/api/content/${slug}?key=${key}`
+  );
 
-    return data;
-  } catch (error) {
-    throw error;
-  }
+  return data;
 };
 
-export async function getServerSideProps(context) {
-  const { slug } = context.params;
-  const { key } = context.query;
+export const getServerSideProps: GetServerSideProps<ViewProps> = async (context) => {
+  const { slug } = context.params as { slug: string };
+  const { key } = context.query as { key: string };
 
-  let entry = null;
+  let entry: ContentEntry | null = null;
 
   try {
     entry = await fetchContent(slug, key);
-  } catch (error) {
+  } catch {
     //do nothing
   }
 
   return {
     props: {
       entry,
-    }, // will be passed to the page component as props
+    },
   };
-}
+};
 
 export default View;

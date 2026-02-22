@@ -1,4 +1,11 @@
-export const Tooltip = ({ children, tip }) => {
+import { ReactNode } from "react";
+
+interface TooltipProps {
+  children: ReactNode;
+  tip: string;
+}
+
+export const Tooltip = ({ children, tip }: TooltipProps) => {
   return (
     <span className="relative group cursor-pointer flex items-center">
       {children}
