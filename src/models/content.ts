@@ -1,6 +1,12 @@
 import { Schema, model, models } from "mongoose";
 
-const contentSchema = new Schema({
+export interface IContent {
+  content: string;
+  slug: string;
+  expiresAt: Date;
+}
+
+const contentSchema = new Schema<IContent>({
   content: {
     type: String,
     required: true,
@@ -16,6 +22,6 @@ const contentSchema = new Schema({
   },
 });
 
-const Content = models.Content || model("Content", contentSchema);
+const Content = models.Content || model<IContent>("Content", contentSchema);
 
 export default Content;

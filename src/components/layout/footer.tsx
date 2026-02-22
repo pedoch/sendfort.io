@@ -33,7 +33,7 @@ const Footer = () => {
             href="https://dev.ochuko.space"
             target="_blank"
             rel="noreferrer noopener"
-            className="cst-close font-bold"
+            className="font-bold"
           >
             Ochuko
           </a>
@@ -44,7 +44,7 @@ const Footer = () => {
             href="https://cutt.ly/Samuels-Portfolio"
             target="_blank"
             rel="noreferrer noopener"
-            className="cst-close font-bold"
+            className="font-bold"
           >
             Samuel
           </a>
@@ -56,7 +56,7 @@ const Footer = () => {
               href="https://lottiefiles.com/628dc6ncsb"
               target="_blank"
               rel="noreferrer noopener"
-              className="cst-close font-bold"
+              className="font-bold"
             >
               Setya
             </a>

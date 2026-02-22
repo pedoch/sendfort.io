@@ -1,9 +1,15 @@
+import { ReactNode } from "react";
 import { Eclipse1, Eclipse2 } from "../icons/blobs";
 import { Star } from "../icons/star";
 import Footer from "./footer";
 import Navbar from "./navbar";
 
-const MainLayout = ({ children, childrenSectionRelative }) => {
+interface MainLayoutProps {
+  children: ReactNode;
+  childrenSectionRelative?: boolean;
+}
+
+const MainLayout = ({ children, childrenSectionRelative }: MainLayoutProps) => {
   const stars = [
     {
       top: "top-[17%]",

@@ -1,16 +1,17 @@
+import type { NextApiRequest, NextApiResponse } from "next";
 import { Content } from "@/models";
 import connectDB from "@/utils/connectDB";
 import { encryptString } from "@/utils/encryptObject";
 import generatePermalink from "@/utils/generatePermalink";
 
-export default async function createContentAPI(req, res) {
+export default async function createContentAPI(req: NextApiRequest, res: NextApiResponse) {
   await connectDB();
 
   if (req.method === "POST") {
     const { content, validityPeriod, key } = req.body;
 
     let slugIsUnique = false;
-    let slug;
+    let slug: string = "";
 
     try {
       while (!slugIsUnique) {
@@ -54,7 +55,7 @@ export default async function createContentAPI(req, res) {
       return res.status(200).json({ slug: savedContent.slug });
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: error.message });
+      return res.status(500).json({ message: (error as Error).message });
     }
   }
 

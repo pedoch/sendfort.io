@@ -1,4 +1,6 @@
-export const Copy = (props) => {
+import { SVGProps } from "react";
+
+export const Copy = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width="16"

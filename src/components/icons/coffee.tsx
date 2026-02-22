@@ -1,4 +1,6 @@
-export const Coffee = (props) => {
+import { SVGProps } from "react";
+
+export const Coffee = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width="24"

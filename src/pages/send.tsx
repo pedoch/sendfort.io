@@ -4,11 +4,17 @@ import { Info } from "@/components/icons/info";
 import { MainLayout } from "@/components/layout";
 import { ErrorMessage } from "@/components/util";
 import { CheckCircleOutlined } from "@ant-design/icons";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import Head from "next/head";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
-const nerdValidityPeriodOptions = [
+interface ValidityPeriodOption {
+  label: string;
+  alt: string;
+  value: number;
+}
+
+const nerdValidityPeriodOptions: ValidityPeriodOption[] = [
   {
     label: "1hr",
     alt: "1 hour",
@@ -61,7 +67,7 @@ const nerdValidityPeriodOptions = [
   },
 ];
 
-const normalValidityPeriodOptions = [
+const normalValidityPeriodOptions: ValidityPeriodOption[] = [
   {
     label: "1hr",
     alt: "1 hour",
@@ -116,26 +122,26 @@ const normalValidityPeriodOptions = [
 
 export default function Send() {
   const [content, setContent] = useState("");
-  const [contentError, setContentError] = useState();
+  const [contentError, setContentError] = useState<string | null>();
   const [validityPeriod, setValidityPeriod] = useState(1);
-  const [validityPeriodError, setValidityPeriodError] = useState();
+  const [validityPeriodError, setValidityPeriodError] = useState<string | null>();
   const [key, setKey] = useState("");
-  const [keyError, setKeyError] = useState();
+  const [keyError, setKeyError] = useState<string | null>();
   const [confirmKey, setConfirmKey] = useState("");
-  const [confirmKeyError, setConfirmKeyError] = useState();
+  const [confirmKeyError, setConfirmKeyError] = useState<string | null>();
   const [showNerd, setShowNerd] = useState(false);
 
   const [showKey, setShowKey] = useState(false);
   const [includeKey, setIncludeKey] = useState(false);
 
-  const [formError, setFormError] = useState();
+  const [formError, setFormError] = useState<string | null>();
 
-  const [confirmedSlug, setConfirmedSlug] = useState();
+  const [confirmedSlug, setConfirmedSlug] = useState<string>();
 
   const [submitting, setSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const [copyTimeout, setCopyTimeout] = useState();
+  const [copyTimeout, setCopyTimeout] = useState<ReturnType<typeof setTimeout> | null>();
 
   const validateForm = () => {
     let isValid = true;
@@ -198,7 +204,7 @@ export default function Send() {
     setShowSuccess(false);
   };
 
-  const submit = async (e) => {
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!validateForm()) return; // if form is not valid, return
@@ -217,7 +223,8 @@ export default function Send() {
       setShowSuccess(true);
       setConfirmedSlug(`${data.slug}${includeKey ? `?key=${key}` : ""}`);
     } catch (error) {
-      setFormError(error.response.data.message);
+      const axiosError = error as AxiosError<{ message: string }>;
+      setFormError(axiosError.response?.data?.message ?? "An error occurred");
     } finally {
       setSubmitting(false);
     }
@@ -266,9 +273,9 @@ export default function Send() {
                   <p>
                     <input
                       type="checkbox"
-                      value={showNerd}
+                      value={String(showNerd)}
                       onClick={(e) => {
-                        setShowNerd(e.target.checked);
+                        setShowNerd((e.target as HTMLInputElement).checked);
                         setValidityPeriod(1);
                       }}
                     />{" "}
@@ -381,7 +388,6 @@ export default function Send() {
                   className="mt-5"
                   btnClassName="text-center w-full"
                   type="submit"
-                  // disableBottom
                   disabled={submitting}
                 >
                   {submitting ? "Encrypting..." : "Encrypt"}
@@ -414,12 +420,6 @@ export default function Send() {
                   {copyTimeout ? "Copied!" : "Copy"}
                   <Copy />
                 </Button>
-                {/* <button
-                  className="p-1 text-xs border-none focus:shadow-none flex gap-2 items-center"
-                  onClick={onCopy}
-                  title="Copy link"
-                  aria-label="Copy link"
-                ></button> */}
               </div>
               <Button onClick={() => resetForm()}>Send another package</Button>
             </div>
@@ -430,12 +430,19 @@ export default function Send() {
   );
 }
 
+interface PeriodButtonProps {
+  period: ValidityPeriodOption;
+  validityPeriod: number;
+  setValidityPeriod: (value: number) => void;
+  submitting: boolean;
+}
+
 const PeriodButton = ({
   period,
   validityPeriod,
   setValidityPeriod,
   submitting,
-}) => {
+}: PeriodButtonProps) => {
   return (
     <button
       type="button"
@@ -444,7 +451,7 @@ const PeriodButton = ({
       className={`flex items-center justify-center border border-white !shadow-none px-3 py-1 rounded-md hover:border-white focus:border-white ${
         validityPeriod === period.value ? "cst-fort-3 text-white" : ""
       }`}
-      onClick={(e) => setValidityPeriod(period.value)}
+      onClick={() => setValidityPeriod(period.value)}
       disabled={submitting}
       title={period.alt}
     >
